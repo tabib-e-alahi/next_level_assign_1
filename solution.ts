@@ -141,3 +141,29 @@ const calculateTotalPrice = (products: IProduct[]): number => {
 };
 
 
+type AUser = {
+  id: number;
+  name: string;
+  email: string;
+  isMarried: boolean;
+}
+
+type literals = keyof AUser;
+
+//basic example-1
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isMarried:boolean;
+  occupation:string;
+  income:number;
+}
+
+//now you want to create a union of keys from the User type
+//without keyof
+type UserType = "id" | "name" | "email" | "isMarried" | "occupation" | "income";
+//what if there are so many keys, here keyof are used
+type UserTypewithKeyOf = keyof User;
+
+
