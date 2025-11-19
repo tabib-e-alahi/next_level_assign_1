@@ -167,3 +167,5 @@ type UserType = "id" | "name" | "email" | "isMarried" | "occupation" | "income";
 type UserTypewithKeyOf = keyof User;
 
 
+let unknown_obj: unknown = 56.98663;
+unknown_obj.toFixed(2);
