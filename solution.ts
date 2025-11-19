@@ -10,7 +10,6 @@ const formatValue = (value: param): param => {
 };
 
 
-
 const getLength = (value: string | any[]): number => {
   if (Array.isArray(value)) {
     return value.length;
@@ -34,7 +33,6 @@ class Person {
     return `'Name: ${this.name}, Age: ${this.age}'`;
   }
 }
-
 
 
 type Item = {
@@ -61,7 +59,6 @@ const filterActiveUsers = (arr: User[]): User[] => {
 
 
 
-
 interface Book {
   title: string;
   author: string;
@@ -79,16 +76,18 @@ const printBookDetails = (obj: Book) => {
 
 
 
+type string_or_number = string | number;
 
-type Array = string | number;
-
-const getUniqueValues = (arr1: Array[], arr2: Array[]): Array[] => {
-  const res: Array[] = [];
+const getUniqueValues = (
+  arr1: string_or_number[],
+  arr2: string_or_number[]
+): string_or_number[] => {
+  const unique_array: string_or_number[] = [];
   let idx = 0;
 
-  const IsExists = (value: Array): boolean => {
+  const IsExists = (value: string_or_number): boolean => {
     for (let i = 0; i < idx; i++) {
-      if (res[i] === value){
+      if (unique_array[i] === value) {
         return true;
       }
     }
@@ -96,22 +95,22 @@ const getUniqueValues = (arr1: Array[], arr2: Array[]): Array[] => {
   };
 
   for (let i = 0; i < arr1.length; i++) {
-    const value = arr1[i];
-    if (value !== undefined && !IsExists(value)) {
-      res[idx] = value;
+    const current_val = arr1[i];
+    if (current_val !== undefined && !IsExists(current_val)) {
+      unique_array[idx] = current_val;
       idx++;
     }
   }
 
   for (let i = 0; i < arr2.length; i++) {
-    const value = arr2[i];
-    if (value !== undefined && !IsExists(value)) {
-      res[idx] = value;
+    const current_val = arr2[i];
+    if (current_val !== undefined && !IsExists(current_val)) {
+      unique_array[idx] = current_val;
       idx++;
     }
   }
 
-  return res;
+  return unique_array;
 };
 
 
@@ -139,33 +138,3 @@ const calculateTotalPrice = (products: IProduct[]): number => {
     return finalTotal;
   }
 };
-
-
-type AUser = {
-  id: number;
-  name: string;
-  email: string;
-  isMarried: boolean;
-}
-
-type literals = keyof AUser;
-
-//basic example-1
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  isMarried:boolean;
-  occupation:string;
-  income:number;
-}
-
-//now you want to create a union of keys from the User type
-//without keyof
-type UserType = "id" | "name" | "email" | "isMarried" | "occupation" | "income";
-//what if there are so many keys, here keyof are used
-type UserTypewithKeyOf = keyof User;
-
-
-let unknown_obj: unknown = 56.98663;
-unknown_obj.toFixed(2);
